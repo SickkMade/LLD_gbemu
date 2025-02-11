@@ -7,7 +7,7 @@ typedef struct {
     rom_header *header;
 } cart_context;
 
-static cart_context ctx;
+static cart_context ctx; ///>???
 
 static const char *ROM_TYPES[] = {
     "ROM ONLY",
@@ -139,17 +139,17 @@ bool cart_load(char *cart) {
 
     printf("Opened: %s\n", ctx.filename);
 
-    fseek(fp, 0, SEEK_END);
-    ctx.rom_size = ftell(fp);
+    fseek(fp, 0, SEEK_END); //???
+    ctx.rom_size = ftell(fp); //???
 
-    rewind(fp);
+    rewind(fp); //???
 
     ctx.rom_data = malloc(ctx.rom_size);
     fread(ctx.rom_data, ctx.rom_size, 1, fp);
     fclose(fp);
 
     ctx.header = (rom_header *)(ctx.rom_data + 0x100);
-    ctx.header->title[15] = 0;
+    ctx.header->title[15] = 0; /// . vs ->
 
     printf("Cartridge Loaded:\n");
     printf("\t Title    : %s\n", ctx.header->title);
